@@ -12,5 +12,10 @@ aws s3 cp s3://$AWS_S3_BUCKET/terraform.tfstate terraform.tfstate
 terraform init
 terraform refresh
 terraform destroy -auto-approve
+if [ $? -ne 0 ]
+then
+    echo "Error!!"
+    exit 1
+fi
 
 aws s3 rm s3://$AWS_S3_BUCKET/terraform.tfstate
