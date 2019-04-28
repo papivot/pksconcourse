@@ -23,7 +23,7 @@ PRODUCT_SLUG=`cat $WORKDIR/prod_slug.txt`
 FILE_VER=`cat $WORKDIR/file_version`
 
 om -t $OM_IP -u ${EMAIL} -p ${PASSWORD} -k upload-product -p ${PRODUCTFILE}
-om -t $OM_IP -u ${EMAIL} -p ${PASSWORD} -k upload-STEMCELL -s ${STEMCELLFILE}
+om -t $OM_IP -u ${EMAIL} -p ${PASSWORD} -k upload-stemcell -s ${STEMCELLFILE}
 om -t $OM_IP -u ${EMAIL} -p ${PASSWORD} -k stage-product --product-name ${PRODUCT_SLUG} --product-version ${FILE_VER}
 
 texplate execute $PROJECT_DIR/ci/assets/template/pks-config.yml -f <(jq -e --raw-output '.modules[0].outputs | map_values(.value)' terraform.tfstate) -o yaml > pcs.yml
