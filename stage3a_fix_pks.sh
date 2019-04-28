@@ -13,7 +13,7 @@ terraform init
 terraform refresh
 OM_IP=`terraform output ops_manager_public_ip`
 
-export vpc_id = `terraform output vpc_id`
+export vpc_id=`terraform output vpc_id`
 export pks_vm_id=`aws ec2 describe-instances --filters "Name=tag:instance_group,Values=pivotal-container-service"|jq -r '.Reservations[].Instances[].InstanceId'`
 export pks_sg_id=`aws ec2 describe-security-groups --filters "Name=vpc-id,Values=${vpc_id}"|jq -r '.SecurityGroups[]|select (.GroupName == "pks_api_lb_security_group").GroupId'`
 export def_sg_id=`aws ec2 describe-security-groups --filters "Name=vpc-id,Values=${vpc_id}"|jq -r '.SecurityGroups[]|select (.GroupName == "vms_security_group").GroupId'`
