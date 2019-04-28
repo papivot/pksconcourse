@@ -11,6 +11,11 @@ aws s3 cp s3://$AWS_S3_BUCKET/terraform.tfvars.orig terraform.tfvars
 terraform init
 terraform plan -out=plan
 terraform apply plan
+if [ $? -ne 0 ]
+then
+    echo "Error!!"
+    exit 1
+fi
 terraform output ops_manager_public_ip
 
 aws s3 cp terraform.tfstate s3://$AWS_S3_BUCKET/terraform.tfstate
