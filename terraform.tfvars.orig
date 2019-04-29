@@ -1,0 +1,21 @@
+env_name           = "awscloud"
+access_key         = "AAAAAAAAAAAAAAAAAA"
+secret_key         = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+region             = "us-east-2"
+availability_zones = ["us-east-2a", "us-east-2b", "us-east-2c"]
+ops_manager_ami    = "ami-0b7bd23c555411f96"
+rds_instance_count = 0
+dns_suffix         = "mydomain.com"
+vpc_cidr           = "10.0.0.0/16"
+
+ssl_cert = <<SSL_CERT
+-----BEGIN CERTIFICATE-----
+add certificate for *.pks.awscloud.mydomain.com
+-----END CERTIFICATE-----
+SSL_CERT
+
+ssl_private_key = <<SSL_KEY
+-----BEGIN RSA PRIVATE KEY-----
+add key for *.pks.awscloud.mydomain.com
+-----END RSA PRIVATE KEY-----
+SSL_KEY
