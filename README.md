@@ -1,4 +1,4 @@
-# Concourse Docker image/scripts and pipeline for PKS/Harbor
+# Concourse Docker image/scripts and Pipeline for PKS/Harbor
 
 How to deploy and run the pipeline - 
 
