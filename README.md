@@ -2,7 +2,7 @@
 
 How to deploy and run the pipeline - 
 
-## **Option 1. (no changes to the tassk or the Dockerfile)**
+## **Option 1. (no changes to the scripts/task or the Dockerfile)**
 
 **Preperation:** Create an S3 bucket (e.g. *mys3bucket-pks*) in the same region where you want to deploy the platform. Make sure the necessary access are provided. 
 
