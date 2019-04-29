@@ -34,7 +34,6 @@ Also, do not modify the references to the image_resource:
 
 Sample environment variable file (e.g. *envvariable.yml*) content - 
 
-**-------------------------------------------------->8--------------------------------------------------**
 ```
 ---
 AWS_ACCESS_KEY_ID: AAAAAAAAAAAAAAA
@@ -63,7 +62,6 @@ EMAIL: myname@email.com
 PASSWORD: Passw0rd
 USERID: myname
 ```
-**-------------------------------------------------->8--------------------------------------------------**
 
 **Step 4.** fly -t ci login -c *http://IP_OF_CONCOURSE:PORT*
 
