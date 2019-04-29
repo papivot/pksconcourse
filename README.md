@@ -33,6 +33,7 @@ Also, do not modify the references to the image_resource:
 
 
 Sample environment variable file (e.g. *envvariable.yml*) content - 
+
 **-------------------------------------------------->8--------------------------------------------------**
 ```
 ---
