@@ -6,14 +6,28 @@ How to deploy and run the pipeline -
 
 **Preperation:** Create an S3 bucket (e.g. *mys3bucket-pks*) in the same region where you want to deploy the platform. Make sure the necessary access are provided. 
 
-Create/upload a file called *terraform.tfvars.orig* in the bucket. The contents of a sample file is in the repository. Note that the *ops_manager_ami* has to match the version of the *PRODUCT_OM_VERSION* (referenced later in this README file. Hopefully this dependency will be removed in the future version. 
+Create/upload a file called *terraform.tfvars.orig* in the bucket. The contents of a sample file is in this repository. Note that the *ops_manager_ami* value has to match the version of the *PRODUCT_OM_VERSION* (referenced later in this README file. This dependency will be removed in the future version. 
 
 (TODO: Make this file more generic and update variables dynamically) 
 
-
 **Step 1.** Copy the *sample_pipeline.yml* to an environment where the Concourse fly CLI is setup. 
 
-**Step 2.** Modfiy the *sample_pipeline.yml* as per your requirements. 
+**Step 2.** Modfiy the *sample_pipeline.yml* as per your requirements. Do not modify the reference to this git resource type
+```
+type: git
+  source:
+    uri: https://github.com/papivot/pksconcourse.git
+    branch: master
+```
+
+Also, do not modify the references to the image_resource:
+```
+      image_resource:
+        type: docker-image
+        source:
+          repository: whoami6443/pivdocker-auto
+          tag: 'latest-final'
+```
 
 **Step 3.** Create an environment variable file in the same directory as the sample_pipeline.yml file was downloaded. 
 
