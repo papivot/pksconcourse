@@ -2,7 +2,7 @@
 
 How to deploy and run the pipeline - 
 
-**Option 1. (no changes to the tassk or the Dockerfile)**
+## **Option 1. (no changes to the tassk or the Dockerfile)**
 
 **Preperation:** Create an S3 bucket (e.g. *mys3bucket-pks*) in the same region where you want to deploy the platform. Make sure the necessary access are provided. 
 
@@ -17,7 +17,7 @@ Create/upload a file called *terraform.tfvars.orig* in the bucket. The contents 
 
 Sample environment variable file (e.g. *envvariable.yml*) content - 
 **-------------------------------------------------->8--------------------------------------------------**
-
+```
 ---
 AWS_ACCESS_KEY_ID: AAAAAAAAAAAAAAA
 AWS_SECRET_ACCESS_KEY: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -42,7 +42,7 @@ DNLDDIR: /tmp/pivnet-out
 EMAIL: myname@email.com
 PASSWORD: Passw0rd
 USERID: myname
-
+```
 **-------------------------------------------------->8--------------------------------------------------**
 
 Step 4. fly -t ci login -c *http://IP_OF_CONCOURSE:PORT*
