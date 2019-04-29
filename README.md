@@ -6,7 +6,7 @@ How to deploy and run the pipeline -
 
 **Preperation:** Create an S3 bucket (e.g. *mys3bucket-pks*) in the same region where you want to deploy the platform. Make sure the necessary access are provided. 
 
-Create/upload a file called *terraform.tfvars.orig* in the bucket. The contents of a sample file is in the repository. 
+Create/upload a file called *terraform.tfvars.orig* in the bucket. The contents of a sample file is in the repository. Note that the *ops_manager_ami* has to match the version of the *PRODUCT_OM_VERSION* (referenced later in this README file. Hopefully this dependency will be removed in the future version. 
 
 (TODO: Make this file more generic and update variables dynamically) 
 
@@ -36,8 +36,10 @@ PRODUCT_SLUG: pivotal-container-service
 PRODUCT_PKS_VERSION: 1.4.0
 STEMCELL: Stemcells for PCF (Ubuntu Xenial)
 STEMCELL_VERSION: 250.25
+# DO NOT modify the next line
 cloud: AWS
 #
+# DO NOT modify the next line
 CLOUD: aws
 PIVNET_TOKEN: XXXXXXXXXXXXXXXXXXXX
 WORKDIR: /tmp/pivnet
