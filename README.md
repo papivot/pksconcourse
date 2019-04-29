@@ -54,4 +54,4 @@ USERID: myname
 
 **Step 5.** fly -t ci sp -p *my-pks-pipeline* -c *sample_pipeline.yml* -l *envvariable.yml*
 
-**Step 6.** Unpause the pipeline. 
+**Step 6.** Unpause *my-pks-pipeline* pipeline. 
