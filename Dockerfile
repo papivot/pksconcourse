@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-# Install.
+# Install relevent packages including aws cli and gcloud cli.
 RUN  \
     apt-get update -y && apt-get install build-essential software-properties-common -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y zlibc zlib1g-dev ruby ruby-dev openssl libxslt1-dev libxml2-dev libssl-dev libreadline7 libreadline-dev libyaml-dev libsqlite3-dev sqlite3 curl git unzip vim wget jq groff awscli rubygems && \
@@ -16,24 +16,27 @@ COPY download* /root/workspace/
 
 #COPY stage* /root/workspace/
 
+# Install Terraform.
 RUN /usr/bin/wget https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip && \
     unzip terraform*.zip && \
     chmod +x terraform && \
     mv terraform /usr/local/bin/terraform && \
     rm terraform*.zip
 
+# Install BOSH Cli.
 RUN wget https://github.com/cloudfoundry/bosh-cli/releases/download/v5.5.0/bosh-cli-5.5.0-linux-amd64 && \
     chmod +x bosh-cli-5.5.0-linux-amd64 && \
     mv bosh-cli-5.5.0-linux-amd64 /usr/local/bin/bosh
 
+# Install OM Cli.
 RUN wget https://github.com/pivotal-cf/om/releases/download/0.56.0/om-linux && \
     mv om-linux /usr/local/bin/om && \
     chmod +x /usr/local/bin/om
 
+# Install UAA cli.
 RUN gem install cf-uaac
 
 COPY texplate /usr/local/bin/texplate
-
 
 # Set environment variables.
 ENV HOME /root
@@ -42,4 +45,4 @@ ENV HOME /root
 WORKDIR /root/workspace
 
 # Define default command.
-CMD ["bash"]
+#CMD ["bash"]
