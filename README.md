@@ -16,7 +16,7 @@ Create/upload a file called *terraform.tfvars.orig* in the bucket. The contents 
 ```
 type: git
   source:
-    uri: https://github.com/papivot/pksconcourse.git
+    uri: **https://github.com/papivot/pksconcourse.git**
     branch: master
 ```
 
