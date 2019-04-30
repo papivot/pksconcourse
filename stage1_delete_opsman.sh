@@ -5,7 +5,7 @@
 
 cd $DNLDDIR
 unzip terraforming*.zip
-cd pivotal-cf-terraforming-${CLOUD}*/terraforming-pks
+cd pivotal-cf-terraforming-*/terraforming-pks
 aws s3 cp s3://$AWS_S3_BUCKET/terraform.tfvars.orig terraform.tfvars
 aws s3 cp s3://$AWS_S3_BUCKET/terraform.tfstate terraform.tfstate
 
