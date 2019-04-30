@@ -43,11 +43,11 @@ else
     echo "INFO - Got product Release ID: " $release_id
 fi
 
-echo "INFO - Getting the download links for: " $local_prod_name : $local_prod_version : $CLOUD
+echo "INFO - Getting the download links for: " $local_prod_name : $local_prod_version : $SC_IAAS
 export download_links=""
 export download_links=`curl --silent -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Token ${PIVNET_TOKEN}" \
         -X GET https://network.pivotal.io/api/v2/products/${prod_slug}/releases/${release_id} \
-        |jq -r -S '.product_files[]|select (.file_type == "Software")|select (.name |test(env.CLOUD))._links.download.href'`
+        |jq -r -S '.product_files[]|select (.file_type == "Software")|select (.name |test(env.SC_IAAS))._links.download.href'`
 if [ -z "$download_links" ]
 then
     printf "Download links not found.  Exiting...\n"
@@ -57,7 +57,7 @@ else
 fi
 export download_names=`curl --silent -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Token ${PIVNET_TOKEN}" \
         -X GET https://network.pivotal.io/api/v2/products/${prod_slug}/releases/${release_id} \
-        |jq -r -S '.product_files[]|select (.file_type == "Software")|select (.name |test(env.CLOUD)).aws_object_key'`
+        |jq -r -S '.product_files[]|select (.file_type == "Software")|select (.name |test(env.SC_IAAS)).aws_object_key'`
 
 echo "INFO - Got product Download Names: " $download_names
 

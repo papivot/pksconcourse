@@ -3,7 +3,7 @@
 ~/workspace/downloadiaasfiles.sh "$PRODUCT_OM" "$PRODUCT_OM_VERSION"
 ~/workspace/downloadiaasfiles.sh "$PRODUCT_ERT" "$PRODUCT_ERT_VERSION"
 ~/workspace/downloadfiles.sh "$PRODUCT_PKS" "$PRODUCT_PKS_VERSION"
-~/workspace/downloadiaasfiles.sh "$STEMCELL" "$STEMCELL_VERSION"
+~/workspace/downloadiaasscell.sh "$STEMCELL" "$STEMCELL_VERSION"
 
 cd $DNLDDIR
 unzip terraforming*.zip

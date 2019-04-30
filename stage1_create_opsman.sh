@@ -6,9 +6,9 @@
 cd $DNLDDIR
 unzip terraforming*.zip
 cd pivotal-cf-terraforming-*/terraforming-pks
-aws s3 cp s3://$AWS_S3_BUCKET/terraform.tfvars.orig terraform.tfvars
+aws s3 cp s3://$AWS_S3_BUCKET/terraform.tfvars.$CLOUD terraform.tfvars
 
-if [ "${cloud}" == "AWS" ]
+if [ "${CLOUD}" == "AWS" ]
 then
     region=`awk '/region/ {print $3}' terraform.tfvars |sed 's/"//g'`
     if [ -z $region ] 
@@ -25,11 +25,11 @@ then
         exit 1
     fi 
     sed -i "s/${original_ami}/${new_ami}/" terraform.tfvars
-elif [ "${cloud}" == "Google" ]
+elif [ "${CLOUD}" == "GCP" ]
 then
     
     original_image=`grep -w opsman_image_url terraform.tfvars|cut -d= -f2|sed 's/"//g'`
-    new_image=`grep -w us: $DNLDDIR/ops-manager-gcp-2.5.1-build.169.yml |awk '{print $2}'`
+    new_image=`grep -w us: $DNLDDIR/ops-manager-gcp-*.yml |awk '{print $2}'`
     if [ -z $new_image ]
     then
         echo "ERROR: IMAGE entry not found for US in ops-manager-gcp-*.yml file. Exit"

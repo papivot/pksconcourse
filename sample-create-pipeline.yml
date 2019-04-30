@@ -12,14 +12,14 @@ pks_config_params: &pks-config-params
   PRODUCT_PKS_VERSION: ((PRODUCT_PKS_VERSION))
   STEMCELL: ((STEMCELL))
   STEMCELL_VERSION: ((STEMCELL_VERSION))
-  cloud: ((cloud))
-  PIVNET_TOKEN: ((PIVNET_TOKEN))
+  SC_IAAS: ((SC_IAAS))
+  CLOUD: ((CLOUD))
   PIVNET_TOKEN: ((PIVNET_TOKEN))
   WORKDIR: ((WORKDIR))
   DNLDDIR: ((DNLDDIR))
   EMAIL: ((EMAIL))
   PASSWORD: ((PASSWORD))
-  USERID: ((USERID ))
+  USERID: ((USERID))
 
 resources:
 - name: nv-pks-git-resource
