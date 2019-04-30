@@ -13,7 +13,6 @@ pks_config_params: &pks-config-params
   STEMCELL: ((STEMCELL))
   STEMCELL_VERSION: ((STEMCELL_VERSION))
   cloud: ((cloud))
-  CLOUD: ((CLOUD))
   PIVNET_TOKEN: ((PIVNET_TOKEN))
   PIVNET_TOKEN: ((PIVNET_TOKEN))
   WORKDIR: ((WORKDIR))
