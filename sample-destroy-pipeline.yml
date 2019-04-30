@@ -1,0 +1,99 @@
+pks_config_params: &pks-config-params
+  AWS_ACCESS_KEY_ID: ((AWS_ACCESS_KEY_ID))
+  AWS_SECRET_ACCESS_KEY: ((AWS_SECRET_ACCESS_KEY))
+  AWS_DEFAULT_REGION: ((AWS_DEFAULT_REGION))
+  AWS_S3_BUCKET: ((AWS_S3_BUCKET))
+  PRODUCT_OM: ((PRODUCT_OM))
+  PRODUCT_OM_VERSION: ((PRODUCT_OM_VERSION))
+  PRODUCT_ERT: ((PRODUCT_ERT))
+  PRODUCT_ERT_VERSION: ((PRODUCT_ERT_VERSION))
+  PRODUCT_PKS: ((PRODUCT_PKS))
+  PRODUCT_SLUG: ((PRODUCT_SLUG))
+  PRODUCT_PKS_VERSION: ((PRODUCT_PKS_VERSION))
+  STEMCELL: ((STEMCELL))
+  STEMCELL_VERSION: ((STEMCELL_VERSION))
+  cloud: ((cloud))
+  CLOUD: ((CLOUD))
+  PIVNET_TOKEN: ((PIVNET_TOKEN))
+  PIVNET_TOKEN: ((PIVNET_TOKEN))
+  WORKDIR: ((WORKDIR))
+  DNLDDIR: ((DNLDDIR))
+  EMAIL: ((EMAIL))
+  PASSWORD: ((PASSWORD))
+  USERID: ((USERID ))
+
+resources:
+- name: nv-pks-git-resource
+  type: git
+  source:
+    uri: https://github.com/papivot/pksconcourse.git
+    branch: master
+
+jobs:
+- name: delete_pks
+  serial: true
+  plan:
+  - aggregate:
+    - get: nv-pks-git-resource
+      trigger: true
+
+  - task: destroy_pks_tile
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: whoami6443/pivdocker-auto
+          tag: 'latest-final'
+      inputs:
+      - name: nv-pks-git-resource
+        path: .
+      run:
+        path: ./stage3_delete_pks.sh
+      params: *pks-config-params
+
+- name: delete_bosh_dir
+  serial: true
+  plan:
+  - aggregate:
+    - get: nv-pks-git-resource
+      passed: [delete_pks]
+      trigger: true
+
+  - task: destroy_bosh_director
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: whoami6443/pivdocker-auto
+          tag: 'latest-final'
+      inputs:
+      - name: nv-pks-git-resource
+        path: .
+      run:
+        path: ./stage2_unconfigure_opsman.sh
+      params: *pks-config-params
+
+- name: delete_opsman
+  serial: true
+  plan:
+  - aggregate:
+    - get: nv-pks-git-resource
+      passed: [delete_bosh_dir]
+      trigger: true
+
+  - task: destroy_ops_man
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: whoami6443/pivdocker-auto
+          tag: 'latest-final'
+      inputs:
+      - name: nv-pks-git-resource
+        path: .
+      run:
+        path: ./stage1_delete_opsman.sh
+      params: *pks-config-params
