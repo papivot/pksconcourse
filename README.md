@@ -51,7 +51,7 @@ PRODUCT_PKS_VERSION: 1.4.0
 STEMCELL: Stemcells for PCF (Ubuntu Xenial)
 STEMCELL_VERSION: 250.25
 # DO NOT modify the next line
-CLOUD: AWS
+cloud: AWS
 #
 PIVNET_TOKEN: XXXXXXXXXXXXXXXXXXXX
 WORKDIR: /tmp/pivnet
