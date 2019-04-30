@@ -4,9 +4,9 @@ How to deploy and run the pipeline -
 
 ## **Option 1. (No changes to the scripts/task or the Dockerfile)**
 
-**Preperation:** Create an S3 bucket (e.g. *mys3bucket-pks*) in the same region where you want to deploy the platform. Make sure the necessary access are provided. 
+**Preperation:** Create an S3 bucket (e.g. *mys3bucket-pks*) in the same region where you want to deploy the platform (for AWS only). Make sure the necessary access are provided. 
 
-Create/upload a file called *terraform.tfvars.orig* in the bucket. The contents of a sample file is in this repository. Note that the *ops_manager_ami* value has to in the *format ami-xxxxxxxxxxxxx*. This value is replaced dynamically with the correct ami-id for the region specified. 
+Create/upload a file called *terraform.tfvars.orig* in the bucket. The contents of a sample file is in this repository. Note that the *ops_manager_ami* value has to in the *format ami-xxxxxxxxxxxxx*. This value is replaced dynamically with the correct ami-id/image_url for the region specified. The format of the terraform.tfvars.orig follows the format specified in the Terraforming IaaS github repo.  https://github.com/pivotal-cf/terraforming-gcp / https://github.com/pivotal-cf/terraforming-aws /... 
 
 (TODO: Make this file more generic and update variables dynamically) 
 
