@@ -6,7 +6,7 @@ How to deploy and run the pipeline -
 
 **Preperation:** Create an S3 bucket (e.g. *mys3bucket-pks*) in the same region where you want to deploy the platform. Make sure the necessary access are provided. 
 
-Create/upload a file called *terraform.tfvars.orig* in the bucket. The contents of a sample file is in this repository. Note that the *ops_manager_ami* value has to match the version of the *PRODUCT_OM_VERSION* (referenced later in this README file. This dependency will be removed in the future version. 
+Create/upload a file called *terraform.tfvars.orig* in the bucket. The contents of a sample file is in this repository. Note that the *ops_manager_ami* value has to in format ami_xxxxxxxxxxxxx
 
 (TODO: Make this file more generic and update variables dynamically) 
 
