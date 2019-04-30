@@ -46,6 +46,9 @@ then
     echo "Error!!"
     exit 1
 fi
+
+# Opsman takes some time to start. Sleep 
+sleep 5m
 terraform output ops_manager_public_ip
 
 aws s3 cp terraform.tfstate s3://$AWS_S3_BUCKET/terraform.tfstate
