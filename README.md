@@ -12,7 +12,7 @@ Create/upload a file called *terraform.tfvars.orig* in the bucket. The contents 
 
 **Step 1.** Copy the *sample_pipeline.yml* to an environment where the Concourse fly CLI is setup. 
 
-**Step 2.** Modfiy the *sample_pipeline.yml* as per your requirements. Do not modify the reference to this git resource type
+**Step 2.** Modfiy the *sample_pipeline.yml* as per your requirements. Do not modify any references to this git resource type
 ```
 type: git
   source:
@@ -20,7 +20,7 @@ type: git
     branch: master
 ```
 
-Also, do not modify the references to the image_resource:
+Also, do not modify any references to the image_resource type:
 ```
       image_resource:
         type: docker-image
