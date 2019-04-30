@@ -47,7 +47,8 @@ then
     exit 1
 fi
 
-# Opsman takes some time to start. Sleep 
+# Opsman takes some time to start. Sleep
+echo "INFO - On Some IaaS, Opsman take a while to start. Sleeping for 5mins..."
 sleep 5m
 terraform output ops_manager_public_ip
 
