@@ -25,7 +25,7 @@ then
         exit 1
     fi 
     sed -i "s/${original_ami}/${new_ami}/" terraform.tfvars
-elif [ "${cloud}" == "GCP" ]
+elif [ "${cloud}" == "Google" ]
 then
     
     original_image=`grep -w opsman_image_url terraform.tfvars|cut -d= -f2|sed 's/"//g'`
