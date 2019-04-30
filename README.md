@@ -10,9 +10,9 @@ Create/upload a file called *terraform.tfvars.orig* in the bucket. The contents 
 
 (TODO: Make this file more generic and update variables dynamically) 
 
-**Step 1.** Copy the *sample_pipeline.yml* to an environment where the Concourse fly CLI is setup. 
+**Step 1.** Copy the *sample-create-pipeline.yml* to an environment where the Concourse fly CLI is setup. 
 
-**Step 2.** Modfiy the *sample_pipeline.yml* as per your requirements. Do not modify any references to this git resource type
+**Step 2.** Modfiy the *sample-create-pipeline.yml* as per your requirements. Do not modify any references to this git resource type
 ```
 type: git
   source:
@@ -29,7 +29,7 @@ Also, do not modify any references to the image_resource type:
           tag: 'latest-final'
 ```
 
-**Step 3.** Create an environment variable file in the same directory as the sample_pipeline.yml file was downloaded. 
+**Step 3.** Create an environment variable file in the same directory as the *sample-create-pipeline.yml* file was downloaded. 
 
 
 Sample environment variable file (e.g. *envvariable.yml*) content - 
@@ -63,6 +63,6 @@ USERID: myname
 
 **Step 4.** fly -t ci login -c *http://IP_OF_CONCOURSE:PORT*
 
-**Step 5.** fly -t ci sp -p *my-pks-pipeline* -c *sample_pipeline.yml* -l *envvariable.yml*
+**Step 5.** fly -t ci sp -p *my-pks-pipeline* -c *sample-create-pipeline.yml* -l *envvariable.yml*
 
 **Step 6.** Unpause *my-pks-pipeline* pipeline. 
