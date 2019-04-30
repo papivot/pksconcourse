@@ -8,7 +8,7 @@ unzip terraforming*.zip
 cd pivotal-cf-terraforming-*/terraforming-pks
 aws s3 cp s3://$AWS_S3_BUCKET/terraform.tfvars.orig terraform.tfvars
 
-if [ "${cloud}" == "aws" ]
+if [ "${cloud}" == "AWS" ]
 then
     region=`awk '/region/ {print $3}' terraform.tfvars |sed 's/"//g'`
     if [ -z $region ] 
@@ -25,6 +25,17 @@ then
         exit 1
     fi 
     sed -i "s/${original_ami}/${new_ami}/" terraform.tfvars
+elif [ "${cloud}" == "GCP" ]
+then
+    
+    original_image=`grep -w opsman_image_url terraform.tfvars|cut -d= -f2|sed 's/"//g'`
+    new_image=`grep -w us: $DNLDDIR/ops-manager-gcp-2.5.1-build.169.yml |awk '{print $2}'`
+    if [ -z $new_image ]
+    then
+        echo "ERROR: IMAGE entry not found for US in ops-manager-gcp-*.yml file. Exit"
+        exit 1
+    fi
+    sed -i "s|${original_image}|https:\/\/storage.googleapis.com\/${new_image}|g" terraform.tfvars
 fi
 
 terraform init
