@@ -21,10 +21,10 @@ uaac user add $USERID --emails $EMAIL -p $PASSWORD
 uaac member add pks.clusters.admin $USERID
 pks login -a ${PKS_EP} -u ${USERID} -p ${PASSWORD} -k
 pks create-cluster $CLUSTER_NAME --external-hostname $CLUSTER_NAME.$DNS  --plan small
-status=`pks cluster cluster00 --json|jq -r .last_action_state`
+status=`pks cluster $CLUSTER_NAME --json|jq -r .last_action_state`
 while [ "$status" = "in progress" ] 
 do 
   echo "Cluster build in progress... sleeping 2m" 
   sleep 2m
-  status=`pks cluster cluster00 --json|jq -r .last_action_state`
+  status=`pks cluster $CLUSTER_NAME --json|jq -r .last_action_state`
 done
