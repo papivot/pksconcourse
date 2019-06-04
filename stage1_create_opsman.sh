@@ -29,7 +29,8 @@ elif [ "${CLOUD}" == "GCP" ]
 then
     
     original_image=`grep -w opsman_image_url terraform.tfvars|cut -d= -f2|sed 's/"//g'`
-    new_image=`grep -w us: $DNLDDIR/ops-manager-gcp-*.yml |awk '{print $2}'`
+#    new_image=`grep -w us: $DNLDDIR/ops-manager-gcp-*.yml |awk '{print $2}'`
+    new_image=`grep -w us: $DNLDDIR/*anager*.yml |awk '{print $2}'`
     if [ -z $new_image ]
     then
         echo "ERROR: IMAGE entry not found for US in ops-manager-gcp-*.yml file. Exit"
